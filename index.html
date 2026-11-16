@@ -90,6 +90,31 @@
 
     .vehicle-price { text-align: left; padding-top: 0; width: 100%; display: flex; justify-content: space-between; align-items: baseline; }
   }
+
+  /* View switch (Original / Redesign) */
+  [hidden] { display: none !important; }
+  .viewbar { position: sticky; top: 0; z-index: 30; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 10px 16px; background: #ece8f6; border-bottom: 1px solid #e2ddea; }
+  .viewbar-label { font-size: 14px; font-weight: 700; color: #5a566b; }
+  .seg { display: flex; gap: 6px; }
+  .seg button { font: 600 13px Inter, sans-serif; min-height: 36px; padding: 7px 16px; border-radius: 999px; border: 1px solid #cfc7e3; background: transparent; color: #5a566b; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .seg button:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+
+  /* Original card, as it is on the live page */
+  .card-old { padding: 16px; border-radius: 12px; }
+  .card-old p { margin: 0; }
+  .o-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .card-old h1 { font-size: 22px; line-height: 1.2; font-weight: 700; }
+  .o-price b { font-size: 18px; font-weight: 700; }
+  .o-price span { font-size: 14px; font-weight: 400; }
+  .o-sub { margin-top: 10px; font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.7); }
+  .o-sub + .o-sub { margin-top: 0; }
+  .o-small { font-size: 12px; color: var(--ink); }
+  .o-stats { display: flex; gap: 12px; }
+  .o-disc { margin-top: 12px; font-size: 12px; line-height: 1.4; }
+  .card-old .cta { margin-top: 16px; }
+  .card-old .usps { margin-top: 14px; gap: 10px; }
+  @media (max-width: 380px) { .o-row { flex-wrap: wrap; } }
 </style>
 </head>
 <body>
@@ -101,6 +126,14 @@
   <symbol id="tick" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10" fill="none" stroke="#111" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
+
+<div class="viewbar" role="group" aria-label="Choose a design to view">
+  <span class="viewbar-label">View</span>
+  <div class="seg">
+    <button type="button" data-view="old" aria-pressed="false">Original</button>
+    <button type="button" data-view="new" aria-pressed="true">Redesign</button>
+  </div>
+</div>
 
 <main class="page">
   <header class="header">
@@ -115,6 +148,21 @@
 
   <div class="hero"><img src="https://imagedelivery.net/eFUyqZujKjUb3WH6tRTCDA/vp-p-2a-lek-b25x8-49u9l4-1/public" alt="19 Nissan Juke" width="800" height="450"></div>
 
+  <!-- ORIGINAL: today's live card, rebuilt for comparison -->
+  <article class="card card-old" id="card-old" hidden>
+    <div class="o-row"><h1>19 NISSAN JUKE</h1><p class="o-price"><b>£211.64</b><span>/month</span></p></div>
+    <div class="o-row o-sub"><p>1.6 [112] Tekna 5dr [Bose]</p><p class="o-small">PCP estimate · 20% deposit added</p></div>
+    <div class="o-row o-sub"><p class="o-stats"><span>23,024 miles</span><span>Manual</span><span>Petrol</span></p><p>Vehicle price £11,990.00</p></div>
+    <p class="o-disc">Illustrative PCP estimate, not a lender offer: 19.5% APR over 36 months, with a £2,398.00 deposit, 35 monthly payments of £211.64 and an estimated optional final payment of £6,583.17. Total payable if you purchase the vehicle: £16,388.57. Assumes 10,000 miles per year; actual finance and final payment may differ.</p>
+    <a class="cta" href="#continue">Continue <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arrow"/></svg></a>
+    <ul class="usps">
+      <li><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg></span>Get a decision in minutes.</li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg></span>PCP, HP and no deposit options available.</li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg></span>We have a wide panel of lenders.</li>
+    </ul>
+  </article>
+
+  <!-- REDESIGN -->
   <article class="card" id="card">
     <h1>19 Nissan Juke</h1>
     <p class="spec">1.6 [112] Tekna 5dr [Bose]</p>
@@ -157,6 +205,21 @@
 </div>
 
 <script>
+  // Original / Redesign switch. ?view=old or ?view=new picks the starting view and is kept in the URL so it can be shared.
+  (function () {
+    var oldCard = document.getElementById('card-old'), newCard = document.getElementById('card');
+    var buttons = document.querySelectorAll('.viewbar [data-view]');
+    function show(v) {
+      oldCard.hidden = v !== 'old';
+      newCard.hidden = v !== 'new';
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.view === v)); });
+      try { var u = new URL(location.href); u.searchParams.set('view', v); history.replaceState(null, '', u); } catch (e) {}
+    }
+    buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.view); }); });
+    var start = new URLSearchParams(location.search).get('view');
+    show(start === 'old' ? 'old' : 'new');
+  })();
+
   // Show the mobile sticky bar once the main Continue button has scrolled out of view.
   (function () {
     var cta = document.getElementById('cta'), bar = document.getElementById('sticky');
