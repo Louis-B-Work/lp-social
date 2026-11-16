@@ -21,10 +21,10 @@
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body { margin: 0; background: #fff; color: var(--ink); font-family: Inter, system-ui, sans-serif; line-height: 1.4; }
-  .page { max-width: 600px; margin: 0 auto; padding: 0 16px 100px; }
+  .page { max-width: 640px; margin: 0 auto; padding: 0 20px 100px; }
 
   /* Header */
-  .header { display: flex; justify-content: space-between; align-items: flex-start; padding: 20px 4px 18px; }
+  .header { display: flex; justify-content: space-between; align-items: flex-start; padding: 20px 0 0; }
   .logo { width: 71px; height: 60px; display: block; }
   .tp { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
   .tp-top { display: flex; align-items: center; gap: 4px; font-weight: 700; font-size: 17px; }
@@ -33,10 +33,12 @@
   .tp-meta { font-size: 9px; color: #444; }
   .tp-meta strong { color: var(--ink); }
   .tp-meta i { display: inline-block; width: 1px; height: 10px; background: #999; margin: 0 6px; vertical-align: -1px; }
-  .progress { height: 6px; border-radius: 3px; background: #e6e6e6; margin: 0 4px 16px; }
+  .progress { height: 6px; background: #e5e7eb; margin: 20px 0 16px; }
+  .progress i { display: block; height: 100%; width: 6%; background: var(--teal); }
 
   /* Vehicle image */
-  .hero { margin: 0 -16px; aspect-ratio: 16 / 9; overflow: hidden; background: #eee; }
+  .hero { margin: 0 -20px; aspect-ratio: 16 / 9; overflow: hidden; background: #eee; }
+  @media (min-width: 768px) { .hero { margin: 0; border-radius: 8px; } }
   .hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   /* Card */
@@ -144,7 +146,7 @@
       <div class="tp-meta">TrustScore <strong>4.9</strong><i></i><strong>60,536</strong> reviews</div>
     </div>
   </header>
-  <div class="progress" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"><i></i></div>
 
   <div class="hero"><img src="https://imagedelivery.net/eFUyqZujKjUb3WH6tRTCDA/vp-p-2a-lek-b25x8-49u9l4-1/public" alt="19 Nissan Juke" width="800" height="450"></div>
 
