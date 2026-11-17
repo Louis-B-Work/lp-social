@@ -36,10 +36,13 @@
   .tp-meta i { display: inline-block; width: 1px; height: 10px; background: #999; margin: 0 6px; vertical-align: -1px; }
   .progress { height: 6px; background: #e5e7eb; margin: 20px 0 16px; }
   .progress i { display: block; height: 100%; width: 6%; background: var(--teal); }
+  body:not([data-view="old"]) .progress { display: none; }
+  body:not([data-view="old"]) .header { padding-bottom: 16px; }
 
   /* Vehicle image */
   .hero { margin: 0 -20px; aspect-ratio: 16 / 9; overflow: hidden; background: #eee; }
   @media (min-width: 768px) { .hero { margin: 0; border-radius: 8px; } }
+  .hero { position: relative; }
   .hero { position: relative; }
   .hero { position: relative; }
   .hero-price { position: absolute; top: 8px; right: 8px; text-align: center; background: var(--brand); border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,.25); }
@@ -56,29 +59,52 @@
   .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); margin: 0 0 6px; }
   h1 { margin: 0; font-size: 22px; line-height: 1.2; font-weight: 700; text-transform: uppercase; }
   .head h1 { font-size: 22px; line-height: 1.2; }
-  .spec { margin: 4px 0 0; font-size: 14px; font-weight: 400; line-height: 1.5; color: rgba(0,0,0,.7); }
+  .spec { margin: 2px 0 0; font-size: 14px; font-weight: 400; line-height: 1.5; color: rgba(0,0,0,.7); }
 
   .stats { display: flex; align-items: center; gap: 14px; padding: 12px 0 0; margin: 12px 0 0; border-top: 1px solid var(--line); font-size: 14px; font-weight: 400; line-height: 1.5; color: rgba(0,0,0,.7); }
   .stats span { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
-  /* V1: price sits in the card beside the title. V2: price badge on the photo. */
-  .head .price, .head .vp { display: none; }
-  body[data-view="v1"] .head .price, body[data-view="v1"] .head .vp { display: block; }
-  body[data-view="v1"] .head h1 { font-size: 18px; line-height: 1.3; }
-  body[data-view="v1"] .head .price { margin: 4px 0 0; font-size: 28px; line-height: 1.15; font-weight: 700; }
-  body[data-view="v1"] .head .price small { font-size: 14px; font-weight: 400; color: rgba(0,0,0,.7); }
-  body[data-view="v1"] .head .vp { margin: 4px 0 0; font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.7); }
-  body[data-view="v1"] .head .spec { margin: 16px 0 0; }
-  @media (min-width: 425px) {
-    body[data-view="v1"] .head { display: grid; grid-template-columns: 1fr auto; column-gap: 12px; align-items: baseline; }
-    body[data-view="v1"] .head h1 { grid-column: 1; grid-row: 1; font-size: 18px; line-height: 1.2; }
-    body[data-view="v1"] .head .price { grid-column: 2; grid-row: 1; margin: 0; font-size: 22px; text-align: right; }
-    body[data-view="v1"] .head .spec { grid-column: 1; grid-row: 2; margin: 4px 0 0; }
-    body[data-view="v1"] .head .vp { grid-column: 2; grid-row: 2; margin: 4px 0 0; text-align: right; }
-  }
-  @media (min-width: 520px) { body[data-view="v1"] .head h1 { font-size: 22px; } body[data-view="v1"] .head .price { font-size: 24px; } }
+  /* Car details: name + trim sit tight together, stats beneath */
+  .head { display: flex; align-items: center; gap: 12px; }
+  .head-text { flex: 1; min-width: 0; }
+  .head h1 { font-size: 22px; line-height: 1.2; }
+  .thumb { display: none; }
   @media (max-width: 424px) { .head { text-align: center; } .stats { justify-content: center; } }
-  .stats svg { display: none; flex: none; width: 20px; height: 20px; color: #8a8896; }
-  @media (min-width: 768px) { .stats { gap: 22px; } .stats svg { display: block; } }
+  .stats { gap: 12px; justify-content: center; }
+  .stats svg { flex: none; width: 18px; height: 18px; color: #8a8896; }
+  .stats span { min-width: 0; }
+  @media (max-width: 424px) { .card { padding-left: 16px; padding-right: 16px; } .stats { gap: 10px; } .stats span { gap: 5px; } .stats svg { width: 16px; height: 16px; } }
+  @media (max-width: 359px) { .stats { gap: 7px; font-size: 12.5px; } .stats span { gap: 4px; } .stats svg { width: 14px; height: 14px; } }
+  @media (min-width: 768px) { .stats { gap: 22px; } .stats svg { width: 20px; height: 20px; } }
+
+  /* Price sits right above the CTA */
+  .pricerow { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 12px; flex-wrap: wrap; margin-top: 16px; }
+  .pricerow .price { margin: 0; font-size: 24px; line-height: 1.15; font-weight: 700; }
+  .pricerow .price small { font-size: 14px; font-weight: 400; color: rgba(0,0,0,.7); }
+  .pricerow .vp { margin: 0; font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.7); }
+  .pricerow + .cta { margin-top: 12px; }
+  body[data-view="v2"] .pricerow { display: none; }
+  body[data-view="v2"] .pricerow + .cta { margin-top: 16px; }
+  @media (max-width: 424px) { .pricerow { flex-wrap: nowrap; align-items: center; } .pricerow .vp { text-align: right; font-size: 13px; line-height: 1.3; } .pricerow .vp span { display: block; } }
+
+  /* V3: image is a small thumbnail, the card sells the finance */
+  body[data-view="v3"] .hero { display: none; }
+  body[data-view="v3"] .card { margin-top: 16px; }
+  body[data-view="v3"] .thumb { display: block; flex: none; width: 120px; height: 90px; border-radius: 10px; object-fit: cover; }
+  body[data-view="v3"] .head h1 { font-size: 16px; }
+  body[data-view="v3"] .head { text-align: left; }
+  body[data-view="v3"] .stats { justify-content: flex-start; }
+
+  @media (min-width: 768px) { body[data-view="v3"] .card { margin: 16px 0 0; } }
+  /* V3 desktop: stats tuck under the name and trim, beside the thumbnail */
+  @media (min-width: 490px) {
+    body[data-view="v3"] .card { display: grid; grid-template-columns: 120px 1fr; column-gap: 16px; align-content: start; }
+    body[data-view="v3"] .card > * { grid-column: 1 / -1; }
+    body[data-view="v3"] .head, body[data-view="v3"] .head-text { display: contents; }
+    body[data-view="v3"] .thumb { grid-column: 1; grid-row: 1 / span 3; align-self: start; }
+    body[data-view="v3"] .head h1 { grid-column: 2; grid-row: 1; align-self: end; }
+    body[data-view="v3"] .head .spec { grid-column: 2; grid-row: 2; }
+    body[data-view="v3"] .stats { justify-content: flex-start; grid-column: 2; grid-row: 3; align-self: start; border-top: 0; padding-top: 0; margin-top: 10px; }
+  }
 
   .price-panel { margin-top: 12px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
   .price-label { font-size: 14px; font-weight: 400; color: rgba(0,0,0,.7); margin: 0 0 1px; }
@@ -92,6 +118,7 @@
   .cta svg { width: 18px; height: 18px; }
   .usps { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 12px; }
   .usps li { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 400; letter-spacing: -.2px; line-height: 1.3; }
+  .usps .dep { font-weight: 700; color: var(--brand); }
   .tick { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--teal); display: grid; place-items: center; }
   .tick svg { width: 14px; height: 14px; }
   .disclaimer { margin: 22px 0 0; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; font-weight: 400; line-height: 1.4; color: var(--faint); }
@@ -161,6 +188,7 @@
     <button type="button" data-view="old" aria-pressed="false">Original</button>
     <button type="button" data-view="v1" aria-pressed="false">V1</button>
     <button type="button" data-view="v2" aria-pressed="true">V2</button>
+    <button type="button" data-view="v3" aria-pressed="false">V3</button>
   </div>
 </div>
 
@@ -195,7 +223,10 @@
 
   <!-- REDESIGN -->
   <article class="card" id="card">
-    <div class="head"><h1>2019 Nissan Juke</h1><p class="price">£211.64<small>/month</small></p><p class="vp">Vehicle price £11,990.00</p><p class="spec">1.6 [112] Tekna 5dr [Bose]</p></div>
+    <div class="head">
+      <img class="thumb" src="https://imagedelivery.net/eFUyqZujKjUb3WH6tRTCDA/vp-p-2a-lek-b25x8-49u9l4-1/public" alt="2019 Nissan Juke" width="88" height="66">
+      <div class="head-text"><h1>2019 Nissan Juke</h1><p class="spec">1.6 [112] Tekna 5dr [Bose]</p></div>
+    </div>
 
     <div class="stats" aria-label="Key vehicle details">
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 14l4-4"/><path d="M3.3 17a10 10 0 1 1 17.4 0"/></svg>23,024 miles</span>
@@ -204,11 +235,12 @@
     </div>
 
 
+    <div class="pricerow"><p class="price">£211.64<small>/month</small></p><p class="vp"><span>Vehicle price</span> £11,990.00</p></div>
     <a class="cta" href="#continue" id="cta">Continue <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arrow"/></svg></a>
 
     <ul class="usps">
       <li><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg></span>Get a decision in minutes.</li>
-      <li><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg></span>PCP, HP and no deposit options available.</li>
+      <li><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg></span><span>PCP, HP and <b class="dep">£0 deposit</b> options available.</span></li>
       <li><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg></span>We have a wide panel of lenders.</li>
     </ul>
 
@@ -242,7 +274,7 @@
     }
     buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.view); }); });
     var start = new URLSearchParams(location.search).get('view');
-    show(start === 'old' || start === 'v1' ? start : 'v2');
+    show(['old', 'v1', 'v2', 'v3'].indexOf(start) > -1 ? start : 'v2');
   })();
 
   // Show the mobile sticky bar once the main Continue button has scrolled out of view.
