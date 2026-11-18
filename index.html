@@ -59,7 +59,7 @@
   .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); margin: 0 0 6px; }
   h1 { margin: 0; font-size: 22px; line-height: 1.2; font-weight: 700; text-transform: uppercase; }
   .head h1 { font-size: 22px; line-height: 1.2; }
-  .spec .nw { white-space: nowrap; }
+  .spec .nw, .head h1 .nw { white-space: nowrap; }
   .spec { margin: 2px 0 0; font-size: 14px; font-weight: 400; line-height: 1.5; color: rgba(0,0,0,.7); }
 
   .stats { display: flex; align-items: center; gap: 14px; padding: 0 0 12px; margin: 10px 0 0; border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 400; line-height: 1.5; color: rgba(0,0,0,.7); }
@@ -96,21 +96,24 @@
   body[data-view="v3"] .thumb { display: block; flex: none; width: var(--th, 120px); height: calc(var(--th, 120px) * .75); border-radius: 10px; object-fit: cover; }
   body[data-view="v3"] .head h1 { font-size: 20px; }
   body[data-view="v3"] .head .spec { font-size: 15px; line-height: 1.4; }
-  @media (max-width: 405px) { body[data-view="v3"] .head .yr { display: block; } }
+  /* title wraps naturally to fill the space beside the image */
   @media (max-width: 429px) { body[data-view="v3"] .card { --th: 100px; } }
+  @media (min-width: 430px) { body[data-view="v3"] .card { --th: 145px; } }
+  @media (min-width: 406px) and (max-width: 429px) { body[data-view="v3"] .card { --th: 120px; } }
   @media (max-width: 379px) { body[data-view="v3"] .head h1 { font-size: 19px; } body[data-view="v3"] .head .spec { font-size: 14px; } }
+  @media (max-width: 359px) { body[data-view="v3"] .head h1 { font-size: 16px; } body[data-view="v3"] .head .spec { font-size: 13px; } }
   @media (max-width: 339px) { body[data-view="v3"] .head h1 { font-size: 16px; } }
   body[data-view="v3"] .head { text-align: left; }
   body[data-view="v3"] .stats { justify-content: flex-start; }
 
   @media (min-width: 768px) { body[data-view="v3"] .card { margin: 16px 0 0; } }
   /* V3: vehicle price sits under the name and trim, beside the thumbnail; stats go with the monthly price */
-  body[data-view="v3"] .card { display: grid; grid-template-columns: var(--th, 120px) 1fr; grid-template-rows: auto auto 1fr; column-gap: 16px; align-content: start; }
+  body[data-view="v3"] .card { display: grid; grid-template-columns: 1fr var(--th, 120px); grid-template-rows: auto auto 1fr; column-gap: 16px; align-content: start; }
   body[data-view="v3"] .card > * { grid-column: 1 / -1; }
   body[data-view="v3"] .head, body[data-view="v3"] .head-text, body[data-view="v3"] .pricerow { display: contents; }
-  body[data-view="v3"] .thumb { grid-column: 1; grid-row: 1 / span 3; align-self: start; }
-  body[data-view="v3"] .head h1 { grid-column: 2; grid-row: 1; align-self: end; }
-  body[data-view="v3"] .head .spec { grid-column: 2; grid-row: 2; }
+  body[data-view="v3"] .thumb { grid-column: 2; grid-row: 1 / span 3; align-self: start; }
+  body[data-view="v3"] .head h1 { grid-column: 1; grid-row: 1; align-self: end; }
+  body[data-view="v3"] .head .spec { grid-column: 1; grid-row: 2; }
   body[data-view="v3"] .pricerow .vp { grid-column: 1 / -1; grid-row: 6; align-self: start; margin-top: 2px; text-align: left; font-size: 14px; line-height: 1.5; }
   body[data-view="v3"] .pricerow .vp span { display: inline; }
   body[data-view="v3"] .pricerow .price { grid-column: 1 / -1; grid-row: 5; justify-self: start; margin-top: 10px; }
@@ -118,11 +121,13 @@
   body[data-view="v3"] .cta, body[data-view="v3"] .pricerow + .cta { margin-top: 14px; }
   /* V3, 406px+: stats fit in the gap under the name and trim */
   /* V3, under 406px: compact title and trim so they end level with the thumbnail */
-  @media (max-width: 405px) { body[data-view="v3"] .head h1 { font-size: 16px; line-height: 1.2; } body[data-view="v3"] .head .spec { font-size: 13px; line-height: 1.3; margin-top: 2px; } body[data-view="v3"] .stats { margin-top: 10px; } }
-  @media (min-width: 406px) {
-    body[data-view="v3"] .stats { grid-column: 2; grid-row: 3; align-self: start; flex-wrap: wrap; gap: 4px 12px; border-bottom: 0; padding: 0; margin-top: 6px; }
+  @media (max-width: 405px) { body[data-view="v3"] .head h1 { line-height: 1.2; } body[data-view="v3"] .head .spec { line-height: 1.3; margin-top: 2px; } body[data-view="v3"] .stats { margin-top: 10px; } }
+  @media (min-width: 372px) {
+    body[data-view="v3"] .stats { grid-column: 1; grid-row: 3; align-self: start; flex-wrap: wrap; gap: 4px 12px; border-bottom: 0; padding: 0; margin-top: 6px; }
+    body[data-view="v3"] .thumb { align-self: stretch; height: auto; min-height: calc(var(--th, 120px) * .75); }
     body[data-view="v3"] .head::after { content: ""; grid-column: 1 / -1; grid-row: 4; height: 1px; background: var(--line); margin-top: 14px; }
   }
+  @media (min-width: 372px) and (max-width: 405px) { body[data-view="v3"] .stats { gap: 4px 9px; font-size: 13px; } body[data-view="v3"] .stats span { gap: 4px; } body[data-view="v3"] .stats svg { width: 15px; height: 15px; } }
 
   .price-panel { margin-top: 12px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
   .price-label { font-size: 14px; font-weight: 400; color: rgba(0,0,0,.7); margin: 0 0 1px; }
@@ -136,7 +141,7 @@
   .cta svg { width: 18px; height: 18px; }
   .usps { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 12px; }
   .usps li { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 400; letter-spacing: -.2px; line-height: 1.3; }
-  .usps .dep { font-weight: 700; color: var(--brand); }
+  .usps .dep { font-weight: 700; color: inherit; }
   .tick { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--teal); display: grid; place-items: center; }
   .tick svg { width: 14px; height: 14px; }
   .disclaimer { margin: 22px 0 0; padding-top: 16px; border-top: 1px solid var(--line); font-size: 12px; font-weight: 400; line-height: 1.4; color: var(--faint); }
@@ -144,7 +149,7 @@
   /* Footer copy */
   .legal { padding: 20px 4px 0; font-size: 14px; letter-spacing: -.2px; color: #222; }
   .legal p { margin: 0 0 14px; }
-  .legal .legal-disc { font-size: 12px; line-height: 1.4; color: var(--faint); }
+  .legal .legal-disc { font-size: 14px; line-height: 1.45; color: inherit; }
   body[data-view="old"] .legal-disc { display: none; }
   .legal a { color: var(--ink); text-decoration: underline; }
 
@@ -248,7 +253,7 @@
   <article class="card" id="card">
     <div class="head">
       <img class="thumb" src="https://imagedelivery.net/eFUyqZujKjUb3WH6tRTCDA/vp-p-2a-lek-b25x8-49u9l4-1/public" alt="2019 Nissan Juke" width="88" height="66">
-      <div class="head-text"><h1><span class="yr">2019</span> Nissan Juke</h1><p class="spec">1.6 [112] <span class="nw">Tekna 5dr [Bose]</span></p></div>
+      <div class="head-text"><h1><span class="yr">2019</span> <span class="nw">Nissan Juke</span></h1><p class="spec">1.6 [112] <span class="nw">Tekna 5dr [Bose]</span></p></div>
     </div>
 
     <div class="stats" aria-label="Key vehicle details">
