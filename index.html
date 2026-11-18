@@ -45,12 +45,12 @@
   .hero { position: relative; }
   .hero { position: relative; }
   .hero { position: relative; }
-  .hero-price { position: absolute; top: 8px; right: 8px; text-align: center; background: var(--brand); border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,.25); }
+  .hero-price { position: absolute; bottom: 30px; right: 20px; text-align: right; background: var(--brand); border-radius: 10px; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,.25); }
   .hp-main { padding: 5px 10px 4px; font-size: 18px; line-height: 1.2; font-weight: 700; color: #fff; }
   .hp-main small { font-size: 12px; font-weight: 400; }
   .hp-sub { padding: 3px 10px; font-size: 12px; line-height: 1.4; color: var(--ink); background: #fff; }
-  @media (min-width: 425px) { .hero-price { top: 12px; right: 12px; border-radius: 12px; } .hp-main { padding: 7px 14px 5px; font-size: 22px; } .hp-main small, .hp-sub { font-size: 14px; } .hp-sub { padding: 4px 12px; } }
-  @media (min-width: 768px) { .hero-price { top: 16px; right: 16px; } .hp-main { font-size: 24px; } }
+  @media (min-width: 425px) { .hero-price { border-radius: 12px; } .hp-main { padding: 7px 14px 5px; font-size: 22px; } .hp-main small, .hp-sub { font-size: 14px; } .hp-sub { padding: 4px 12px; } }
+  @media (min-width: 768px) { .hero-price { bottom: 48px; right: 30px; } .hp-main { font-size: 24px; } }
   .hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   /* Card */
@@ -59,9 +59,10 @@
   .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); margin: 0 0 6px; }
   h1 { margin: 0; font-size: 22px; line-height: 1.2; font-weight: 700; text-transform: uppercase; }
   .head h1 { font-size: 22px; line-height: 1.2; }
+  .spec .nw { white-space: nowrap; }
   .spec { margin: 2px 0 0; font-size: 14px; font-weight: 400; line-height: 1.5; color: rgba(0,0,0,.7); }
 
-  .stats { display: flex; align-items: center; gap: 14px; padding: 8px 0 0; margin: 6px 0 0; border-top: 1px solid var(--line); font-size: 14px; font-weight: 400; line-height: 1.5; color: rgba(0,0,0,.7); }
+  .stats { display: flex; align-items: center; gap: 14px; padding: 0 0 12px; margin: 10px 0 0; border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 400; line-height: 1.5; color: rgba(0,0,0,.7); }
   .stats span { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
   /* Car details: name + trim sit tight together, stats beneath */
   .head { display: flex; align-items: center; gap: 12px; }
@@ -69,7 +70,6 @@
   .head h1 { font-size: 22px; line-height: 1.2; }
   .thumb { display: none; }
   .stats { gap: 12px; justify-content: flex-start; }
-  @media (max-width: 424px) { .head { text-align: center; } .stats { justify-content: center; } }
   .stats svg { flex: none; width: 18px; height: 18px; color: #8a8896; }
   .stats span { min-width: 0; }
   @media (max-width: 424px) { .card { padding-left: 16px; padding-right: 16px; } .stats { gap: 10px; } .stats span { gap: 5px; } .stats svg { width: 16px; height: 16px; } }
@@ -83,33 +83,45 @@
   .pricerow .vp { margin: 0; font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.7); }
   .pricerow + .cta { margin-top: 12px; }
   body[data-view="v2"] .pricerow { display: none; }
+  body[data-view="v1"] .pricerow { flex-direction: column; align-items: flex-start; gap: 2px; }
+  body[data-view="v1"] .pricerow .vp span { display: inline; }
+  body[data-view="v1"] .pricerow .vp { font-size: 14px; white-space: nowrap; }
+  body[data-view="v1"] .pricerow .vp { text-align: left; }
   body[data-view="v2"] .pricerow + .cta { margin-top: 16px; }
   @media (max-width: 424px) { .pricerow { flex-wrap: nowrap; align-items: center; } .pricerow .vp { text-align: right; font-size: 13px; line-height: 1.3; } .pricerow .vp span { display: block; } }
 
   /* V3: image is a small thumbnail, the card sells the finance */
   body[data-view="v3"] .hero { display: none; }
   body[data-view="v3"] .card { margin-top: 16px; }
-  body[data-view="v3"] .thumb { display: block; flex: none; width: 120px; height: 90px; border-radius: 10px; object-fit: cover; }
-  body[data-view="v3"] .head h1 { font-size: 16px; }
+  body[data-view="v3"] .thumb { display: block; flex: none; width: var(--th, 120px); height: calc(var(--th, 120px) * .75); border-radius: 10px; object-fit: cover; }
+  body[data-view="v3"] .head h1 { font-size: 20px; }
+  body[data-view="v3"] .head .spec { font-size: 15px; line-height: 1.4; }
+  @media (max-width: 405px) { body[data-view="v3"] .head .yr { display: block; } }
+  @media (max-width: 429px) { body[data-view="v3"] .card { --th: 100px; } }
+  @media (max-width: 379px) { body[data-view="v3"] .head h1 { font-size: 19px; } body[data-view="v3"] .head .spec { font-size: 14px; } }
+  @media (max-width: 339px) { body[data-view="v3"] .head h1 { font-size: 16px; } }
   body[data-view="v3"] .head { text-align: left; }
   body[data-view="v3"] .stats { justify-content: flex-start; }
 
   @media (min-width: 768px) { body[data-view="v3"] .card { margin: 16px 0 0; } }
   /* V3: vehicle price sits under the name and trim, beside the thumbnail; stats go with the monthly price */
-  body[data-view="v3"] .card { display: grid; grid-template-columns: 120px 1fr; grid-template-rows: auto auto 1fr; column-gap: 16px; align-content: start; }
+  body[data-view="v3"] .card { display: grid; grid-template-columns: var(--th, 120px) 1fr; grid-template-rows: auto auto 1fr; column-gap: 16px; align-content: start; }
   body[data-view="v3"] .card > * { grid-column: 1 / -1; }
   body[data-view="v3"] .head, body[data-view="v3"] .head-text, body[data-view="v3"] .pricerow { display: contents; }
   body[data-view="v3"] .thumb { grid-column: 1; grid-row: 1 / span 3; align-self: start; }
   body[data-view="v3"] .head h1 { grid-column: 2; grid-row: 1; align-self: end; }
   body[data-view="v3"] .head .spec { grid-column: 2; grid-row: 2; }
-  body[data-view="v3"] .pricerow .vp { grid-column: 2; grid-row: 3; align-self: start; margin-top: 2px; text-align: left; font-size: 14px; line-height: 1.5; }
+  body[data-view="v3"] .pricerow .vp { grid-column: 1 / -1; grid-row: 6; align-self: start; margin-top: 2px; text-align: left; font-size: 14px; line-height: 1.5; }
   body[data-view="v3"] .pricerow .vp span { display: inline; }
   body[data-view="v3"] .pricerow .price { grid-column: 1 / -1; grid-row: 5; justify-self: start; margin-top: 10px; }
-  body[data-view="v3"] .stats { grid-column: 1 / -1; grid-row: 4; justify-content: flex-start; border-top: 0; padding-top: 0; margin-top: 14px; }
+  body[data-view="v3"] .stats { grid-column: 1 / -1; grid-row: 4; justify-content: flex-start; flex-wrap: nowrap; border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-top: 14px; }
   body[data-view="v3"] .cta, body[data-view="v3"] .pricerow + .cta { margin-top: 14px; }
-  @media (min-width: 560px) {
-    body[data-view="v3"] .pricerow .price { grid-row: 4; margin-top: 16px; }
-    body[data-view="v3"] .stats { grid-row: 4; justify-self: end; margin-top: 16px; align-self: center; }
+  /* V3, 392px+: stats fit in the gap under the name and trim */
+  /* V3, under 392px: compact title and trim so they end level with the thumbnail */
+  @media (max-width: 391px) { body[data-view="v3"] .head h1 { font-size: 16px; line-height: 1.2; } body[data-view="v3"] .head .spec { font-size: 13px; line-height: 1.3; margin-top: 2px; } body[data-view="v3"] .stats { margin-top: 10px; } }
+  @media (min-width: 392px) {
+    body[data-view="v3"] .stats { grid-column: 2; grid-row: 3; align-self: start; flex-wrap: wrap; gap: 4px 12px; border-bottom: 0; padding: 0; margin-top: 6px; }
+    body[data-view="v3"] .head::after { content: ""; grid-column: 1 / -1; grid-row: 4; height: 1px; background: var(--line); margin-top: 14px; }
   }
 
   .price-panel { margin-top: 12px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -132,6 +144,8 @@
   /* Footer copy */
   .legal { padding: 20px 4px 0; font-size: 14px; letter-spacing: -.2px; color: #222; }
   .legal p { margin: 0 0 14px; }
+  .legal .legal-disc { font-size: 12px; line-height: 1.4; color: var(--faint); }
+  body[data-view="old"] .legal-disc { display: none; }
   .legal a { color: var(--ink); text-decoration: underline; }
 
   /* Mobile sticky bar */
@@ -161,20 +175,21 @@
   .seg button:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
 
   /* Original card, as it is on the live page */
-  .card-old { padding: 16px; border-radius: 12px; }
+  .card-old { padding: 18px 16px 16px; border-radius: 8px; margin-top: -24px; }
   .card-old p { margin: 0; }
-  .o-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-  .card-old h1 { font-size: 22px; line-height: 1.2; font-weight: 700; }
+  .o-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 12px; align-items: baseline; }
+  .o-row { display: contents; }
+  .o-grid .o-price, .o-grid .o-small, .o-grid .o-sub:nth-of-type(n) > p:last-child { text-align: right; }
+  .card-old h1 { font-size: 22px; line-height: 1.2; font-weight: 700; padding-bottom: 16px; }
+  @media (min-width: 768px) { .card-old { margin: -32px 24px 0; padding: 20px; } .card-old h1 { font-size: 26px; } }
   .o-price b { font-size: 18px; font-weight: 700; }
   .o-price span { font-size: 14px; font-weight: 400; }
-  .o-sub { margin-top: 10px; font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.7); }
-  .o-sub + .o-sub { margin-top: 0; }
-  .o-small { font-size: 12px; color: var(--ink); }
-  .o-stats { display: flex; gap: 12px; }
-  .o-disc { margin-top: 12px; font-size: 12px; line-height: 1.4; }
+  .o-sub > * { margin-top: 4px; font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.7); }
+  .card-old .o-grid .o-small { font-size: 12px; color: var(--ink); line-height: 18px; }
+  .o-stats { display: flex; flex-wrap: wrap; gap: 0 12px; }
+  .card-old .o-disc { margin-top: 12px; font-size: 12px; line-height: 16.5px; }
   .card-old .cta { margin-top: 16px; }
   .card-old .usps { margin-top: 14px; gap: 10px; }
-  @media (max-width: 380px) { .o-row { flex-wrap: wrap; } }
 </style>
 </head>
 <body>
@@ -215,9 +230,11 @@
 
   <!-- ORIGINAL: today's live card, rebuilt for comparison -->
   <article class="card card-old" id="card-old" hidden>
+    <div class="o-grid">
     <div class="o-row"><h1>19 NISSAN JUKE</h1><p class="o-price"><b>£211.64</b><span>/month</span></p></div>
     <div class="o-row o-sub"><p>1.6 [112] Tekna 5dr [Bose]</p><p class="o-small">PCP estimate · 20% deposit added</p></div>
     <div class="o-row o-sub"><p class="o-stats"><span>23,024 miles</span><span>Manual</span><span>Petrol</span></p><p>Vehicle price £11,990.00</p></div>
+    </div>
     <p class="o-disc">Illustrative PCP estimate, not a lender offer: 19.5% APR over 36 months, with a £2,398.00 deposit, 35 monthly payments of £211.64 and an estimated optional final payment of £6,583.17. Total payable if you purchase the vehicle: £16,388.57. Assumes 10,000 miles per year; actual finance and final payment may differ.</p>
     <a class="cta" href="#continue">Continue <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arrow"/></svg></a>
     <ul class="usps">
@@ -231,7 +248,7 @@
   <article class="card" id="card">
     <div class="head">
       <img class="thumb" src="https://imagedelivery.net/eFUyqZujKjUb3WH6tRTCDA/vp-p-2a-lek-b25x8-49u9l4-1/public" alt="2019 Nissan Juke" width="88" height="66">
-      <div class="head-text"><h1>2019 Nissan Juke</h1><p class="spec">1.6 [112] Tekna 5dr [Bose]</p></div>
+      <div class="head-text"><h1><span class="yr">2019</span> Nissan Juke</h1><p class="spec">1.6 [112] <span class="nw">Tekna 5dr [Bose]</span></p></div>
     </div>
 
     <div class="stats" aria-label="Key vehicle details">
@@ -250,10 +267,10 @@
       <li><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#tick"/></svg></span>We have a wide panel of lenders.</li>
     </ul>
 
-    <p class="disclaimer">Illustrative PCP estimate, not a lender offer: 19.5% APR over 36 months, with a £2,398.00 deposit, 35 monthly payments of £211.64 and an estimated optional final payment of £6,583.17. Total payable if you purchase the vehicle: £16,388.57. Assumes 10,000 miles per year; actual finance and final payment may differ.</p>
   </article>
 
   <section class="legal">
+    <p class="legal-disc">Illustrative PCP estimate, not a lender offer: 19.5% APR over 36 months, with a £2,398.00 deposit, 35 monthly payments of £211.64 and an estimated optional final payment of £6,583.17. Total payable if you purchase the vehicle: £16,388.57. Assumes 10,000 miles per year; actual finance and final payment may differ.</p>
     <p>By providing your information, you agree to our <a href="#privacy">Privacy Policy</a>.</p>
     <p>Car Finance 247 Limited is a credit broker, not a lender.</p>
     <p><strong>Car Finance 247</strong> will pay us a commission for introducing a customer who takes out a motor finance agreement. The commission paid is a <strong>fixed amount</strong> per agreement that is directly linked to the amount you borrow.</p>
