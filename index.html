@@ -82,6 +82,10 @@
   .pricerow .price small { font-size: 14px; font-weight: 400; color: rgba(0,0,0,.7); }
   .pricerow .vp { margin: 0; font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.7); }
   .pricerow + .cta { margin-top: 12px; }
+  .est { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 400; color: rgba(0,0,0,.7); }
+  body[data-view="v2"] .est { display: none; }
+  .hp-est { display: block; margin-top: 1px; font-size: 12px; line-height: 1.3; font-weight: 400; opacity: .9; }
+  @media (min-width: 425px) { .hp-est { font-size: 14px; } }
   body[data-view="v2"] .pricerow { display: none; }
   body[data-view="v1"] .pricerow { flex-direction: column; align-items: flex-start; gap: 2px; }
   body[data-view="v1"] .pricerow .vp span { display: inline; }
@@ -114,17 +118,20 @@
   body[data-view="v3"] .thumb { grid-column: 2; grid-row: 1 / span 3; align-self: start; }
   body[data-view="v3"] .head h1 { grid-column: 1; grid-row: 1; align-self: end; }
   body[data-view="v3"] .head .spec { grid-column: 1; grid-row: 2; }
-  body[data-view="v3"] .pricerow .vp { grid-column: 1 / -1; grid-row: 6; align-self: start; margin-top: 2px; text-align: left; font-size: 14px; line-height: 1.5; }
+  body[data-view="v3"] .pricerow .vp { grid-column: 1 / -1; grid-row: 7; align-self: start; margin-top: 2px; text-align: left; font-size: 14px; line-height: 1.5; }
   body[data-view="v3"] .pricerow .vp span { display: inline; }
-  body[data-view="v3"] .pricerow .price { grid-column: 1 / -1; grid-row: 5; justify-self: start; margin-top: 10px; }
+  body[data-view="v3"] .pricerow .price { grid-column: 1 / -1; grid-row: 5; justify-self: start; margin-top: 12px; }
   body[data-view="v3"] .stats { grid-column: 1 / -1; grid-row: 4; justify-content: flex-start; flex-wrap: nowrap; border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-top: 14px; }
   body[data-view="v3"] .cta, body[data-view="v3"] .pricerow + .cta { margin-top: 14px; }
+  body[data-view="v3"] .cta { grid-row: 8; }
+  body[data-view="v3"] .card > .usps { grid-row: 9; }
+  body[data-view="v3"] .est { grid-column: 1 / -1; grid-row: 6; margin-top: 2px; }
   /* V3, 406px+: stats fit in the gap under the name and trim */
   /* V3, under 406px: compact title and trim so they end level with the thumbnail */
   @media (max-width: 405px) { body[data-view="v3"] .head h1 { line-height: 1.2; } body[data-view="v3"] .head .spec { line-height: 1.3; margin-top: 2px; } body[data-view="v3"] .stats { margin-top: 10px; } }
   @media (min-width: 372px) {
     body[data-view="v3"] .stats { grid-column: 1; grid-row: 3; align-self: start; flex-wrap: wrap; gap: 4px 12px; border-bottom: 0; padding: 0; margin-top: 6px; }
-    body[data-view="v3"] .thumb { align-self: stretch; height: auto; min-height: calc(var(--th, 120px) * .75); }
+    body[data-view="v3"] .thumb { align-self: stretch; height: 0; min-height: max(100%, calc(var(--th, 120px) * .6)); }
     body[data-view="v3"] .head::after { content: ""; grid-column: 1 / -1; grid-row: 4; height: 1px; background: var(--line); margin-top: 14px; }
   }
   @media (min-width: 372px) and (max-width: 405px) { body[data-view="v3"] .stats { gap: 4px 9px; font-size: 13px; } body[data-view="v3"] .stats span { gap: 4px; } body[data-view="v3"] .stats svg { width: 15px; height: 15px; } }
@@ -230,7 +237,7 @@
   <div class="progress" aria-hidden="true"><i></i></div>
 
   <div class="hero"><img src="https://imagedelivery.net/eFUyqZujKjUb3WH6tRTCDA/vp-p-2a-lek-b25x8-49u9l4-1/public" alt="2019 Nissan Juke" width="800" height="450">
-    <div class="hero-price" id="heroPrice"><div class="hp-main">£211.64<small>/month</small></div><div class="hp-sub">Vehicle price £11,990.00</div></div>
+    <div class="hero-price" id="heroPrice"><div class="hp-main">£211.64<small>/month</small><span class="hp-est">PCP · 20% deposit</span></div><div class="hp-sub">Vehicle price £11,990.00</div></div>
   </div>
 
   <!-- ORIGINAL: today's live card, rebuilt for comparison -->
@@ -263,7 +270,7 @@
     </div>
 
 
-    <div class="pricerow"><p class="price">£211.64<small>/month</small></p><p class="vp"><span>Vehicle price</span> £11,990.00</p></div>
+    <div class="pricerow"><p class="price">£211.64<small>/month</small></p><p class="est">PCP · 20% deposit</p><p class="vp"><span>Vehicle price</span> £11,990.00</p></div>
     <a class="cta" href="#continue" id="cta">Continue <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arrow"/></svg></a>
 
     <ul class="usps">
