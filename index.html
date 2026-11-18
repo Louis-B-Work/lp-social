@@ -61,7 +61,7 @@
   .head h1 { font-size: 22px; line-height: 1.2; }
   .spec { margin: 2px 0 0; font-size: 14px; font-weight: 400; line-height: 1.5; color: rgba(0,0,0,.7); }
 
-  .stats { display: flex; align-items: center; gap: 14px; padding: 12px 0 0; margin: 12px 0 0; border-top: 1px solid var(--line); font-size: 14px; font-weight: 400; line-height: 1.5; color: rgba(0,0,0,.7); }
+  .stats { display: flex; align-items: center; gap: 14px; padding: 8px 0 0; margin: 6px 0 0; border-top: 1px solid var(--line); font-size: 14px; font-weight: 400; line-height: 1.5; color: rgba(0,0,0,.7); }
   .stats span { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
   /* Car details: name + trim sit tight together, stats beneath */
   .head { display: flex; align-items: center; gap: 12px; }
@@ -95,15 +95,21 @@
   body[data-view="v3"] .stats { justify-content: flex-start; }
 
   @media (min-width: 768px) { body[data-view="v3"] .card { margin: 16px 0 0; } }
-  /* V3 desktop: stats tuck under the name and trim, beside the thumbnail */
-  @media (min-width: 490px) {
-    body[data-view="v3"] .card { display: grid; grid-template-columns: 120px 1fr; column-gap: 16px; align-content: start; }
-    body[data-view="v3"] .card > * { grid-column: 1 / -1; }
-    body[data-view="v3"] .head, body[data-view="v3"] .head-text { display: contents; }
-    body[data-view="v3"] .thumb { grid-column: 1; grid-row: 1 / span 3; align-self: start; }
-    body[data-view="v3"] .head h1 { grid-column: 2; grid-row: 1; align-self: end; }
-    body[data-view="v3"] .head .spec { grid-column: 2; grid-row: 2; }
-    body[data-view="v3"] .stats { justify-content: flex-start; grid-column: 2; grid-row: 3; align-self: start; border-top: 0; padding-top: 0; margin-top: 10px; }
+  /* V3: vehicle price sits under the name and trim, beside the thumbnail; stats go with the monthly price */
+  body[data-view="v3"] .card { display: grid; grid-template-columns: 120px 1fr; grid-template-rows: auto auto 1fr; column-gap: 16px; align-content: start; }
+  body[data-view="v3"] .card > * { grid-column: 1 / -1; }
+  body[data-view="v3"] .head, body[data-view="v3"] .head-text, body[data-view="v3"] .pricerow { display: contents; }
+  body[data-view="v3"] .thumb { grid-column: 1; grid-row: 1 / span 3; align-self: start; }
+  body[data-view="v3"] .head h1 { grid-column: 2; grid-row: 1; align-self: end; }
+  body[data-view="v3"] .head .spec { grid-column: 2; grid-row: 2; }
+  body[data-view="v3"] .pricerow .vp { grid-column: 2; grid-row: 3; align-self: start; margin-top: 2px; text-align: left; font-size: 14px; line-height: 1.5; }
+  body[data-view="v3"] .pricerow .vp span { display: inline; }
+  body[data-view="v3"] .pricerow .price { grid-column: 1 / -1; grid-row: 5; justify-self: start; margin-top: 10px; }
+  body[data-view="v3"] .stats { grid-column: 1 / -1; grid-row: 4; justify-content: flex-start; border-top: 0; padding-top: 0; margin-top: 14px; }
+  body[data-view="v3"] .cta, body[data-view="v3"] .pricerow + .cta { margin-top: 14px; }
+  @media (min-width: 560px) {
+    body[data-view="v3"] .pricerow .price { grid-row: 4; margin-top: 16px; }
+    body[data-view="v3"] .stats { grid-row: 4; justify-self: end; margin-top: 16px; align-self: center; }
   }
 
   .price-panel { margin-top: 12px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
