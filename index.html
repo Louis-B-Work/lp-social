@@ -299,7 +299,7 @@
   <section class="legal">
     <p class="legal-rep" data-ex="std">Representative Example: based on a cash price of £18,000.00 with a deposit of £2,000.00, the amount of credit is £16,000.00, repayable over 49 months comprising 48 monthly payments of £299.00 followed by an optional final payment of £6,500.00, at a fixed interest rate of 7.9% per annum, giving a total amount payable of £24,850.00 and a representative APR of 9.9% APR. This example is based on an annual mileage of 10,000 miles; excess mileage charges may apply. Credit is subject to status.</p>
     <p class="legal-rep" data-ex="v1">Rates from 9.4% APR. <strong>Representative Example (PCP)</strong>: Car price <strong>£30,000</strong>, Term 4 years, Deposit <strong>£3,000</strong>, Total amount of credit <strong>£27,000</strong>, Representative <strong>11.9% APR</strong> fixed rate, Monthly payment <strong>£514.35</strong>, Option to purchase fee £10 payable, Total cost of credit <strong>£8,992.41</strong>, Total amount payable <strong>£38,992.41</strong>, Optional final payment <strong>£11,817.96</strong> Annual mileage 8,000pa.<br>Car Finance 247 Limited is a credit broker, not a lender.</p>
-    <p class="legal-rep" data-ex="v2"><strong>Illustrative example (PCP) at 9.4% APR:</strong> Car price £30,000, Term 4 years, Deposit £3,000, Total amount of credit £27,000, 9.4% APR fixed rate, 47 monthly payments of £475.00, Option to purchase fee £10 (included in final payment), Optional final payment £11,817.96, Total cost of credit £7,142.96, Total amount payable £37,142.96, Annual mileage 8,000pa.<br>Car Finance 247 Limited is a credit broker, not a lender.</p>
+    <p class="legal-rep" data-ex="v2"><strong>Illustrative example (PCP) at 9.4% APR:</strong> Car price £18,000, Term 4 years, Deposit £3,600, Total amount of credit £14,400, 9.4% APR fixed rate, 47 monthly payments of £239.40, Option to purchase fee £10 (included in final payment), Optional final payment £7,090.78, Total cost of credit £3,942.58, Total amount payable £21,942.58, Annual mileage 8,000pa.<br>Car Finance 247 Limited is a credit broker, not a lender.</p>
     <p>By providing your information, you agree to our <a href="#privacy">Privacy Policy</a>.</p>
     <p data-ex="std">Car Finance 247 Limited is a credit broker, not a lender.</p>
   </section>
@@ -316,12 +316,13 @@
     var oldCard = document.getElementById('card-old'), newCard = document.getElementById('card');
     var buttons = document.querySelectorAll('.viewbar [data-view]');
     var tabs = document.querySelectorAll('.viewbar [data-tab]'), groups = document.querySelectorAll('.viewbar .seg[data-group]');
-    // V1 and V2 use the purple-badge layout with the newer finance examples, so their card figures differ.
-    // The unused templates (Original, Old V1-V3) keep the £299 example.
+    // V1 and V2 use the purple-badge layout with the newer finance examples and show a 20% deposit.
+    // V1's Representative Example is fixed approved text, so its card keeps the live page figures; V2's example is
+    // calculated from this vehicle (£18,000, 20% deposit). The unused templates (Original, Old V1-V3) keep the £299 example.
     var FIGS = {
       std: { mo: '£299.00', dep: '11%', vp: '£18,000.00', sticky: '£18,000' },
-      v1:  { mo: '£514.35', dep: '10%', vp: '£30,000.00', sticky: '£30,000' },
-      v2:  { mo: '£475.00', dep: '10%', vp: '£30,000.00', sticky: '£30,000' }
+      v1:  { mo: '£299.00', dep: '20%', vp: '£18,000.00', sticky: '£18,000' },
+      v2:  { mo: '£239.40', dep: '20%', vp: '£18,000.00', sticky: '£18,000' }
     };
     function showGroup(g) {
       groups.forEach(function (el) { el.hidden = el.dataset.group !== g; });
