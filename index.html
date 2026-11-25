@@ -81,61 +81,61 @@
   .pricerow .price { margin: 0; font-size: 24px; line-height: 1.15; font-weight: 700; }
   .pricerow .price small { font-size: 14px; font-weight: 400; color: rgba(0,0,0,.7); }
   .vpl { margin: 6px 0 0; padding-bottom: 12px; border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.7); }
-  body:not([data-view="v3"]) .stats { border-bottom: 0; padding-bottom: 0; }
+  body:not([data-view="t3"]) .stats { border-bottom: 0; padding-bottom: 0; }
   .pricerow .vp { margin: 0; font-size: 14px; line-height: 1.5; color: rgba(0,0,0,.7); }
   .pricerow + .cta { margin-top: 12px; }
   .est { margin: 0; font-size: 14px; line-height: 1.5; font-weight: 400; color: rgba(0,0,0,.7); }
-  body[data-view="v2"] .est { display: none; }
-  body[data-view="v2"] .pricerow { display: none; }
-  body[data-view="v1"] .pricerow { flex-direction: column; align-items: flex-start; gap: 2px; }
-  body[data-view="v1"] .pricerow .vp span { display: inline; }
-  body[data-view="v1"] .pricerow .vp { font-size: 14px; white-space: nowrap; }
-  body[data-view="v1"] .pricerow .vp { text-align: left; }
-  body[data-view="v2"] .pricerow + .cta { margin-top: 16px; }
+  body[data-layout="v2"] .est { display: none; }
+  body[data-layout="v2"] .pricerow { display: none; }
+  body[data-view="t1"] .pricerow { flex-direction: column; align-items: flex-start; gap: 2px; }
+  body[data-view="t1"] .pricerow .vp span { display: inline; }
+  body[data-view="t1"] .pricerow .vp { font-size: 14px; white-space: nowrap; }
+  body[data-view="t1"] .pricerow .vp { text-align: left; }
+  body[data-layout="v2"] .pricerow + .cta { margin-top: 16px; }
   @media (max-width: 424px) { .pricerow { flex-wrap: nowrap; align-items: center; } .pricerow .vp { text-align: right; font-size: 13px; line-height: 1.3; } .pricerow .vp span { display: block; } }
 
   /* V3: image is a small thumbnail, the card sells the finance */
-  body[data-view="v3"] .hero { display: none; }
-  body[data-view="v3"] .card { margin-top: 16px; }
-  body[data-view="v3"] .thumb { display: block; flex: none; width: var(--th, 120px); height: calc(var(--th, 120px) * .75); border-radius: 10px; object-fit: cover; }
-  body[data-view="v3"] .head h1 { font-size: 20px; }
-  body[data-view="v3"] .head .spec { font-size: 15px; line-height: 1.4; }
+  body[data-view="t3"] .hero { display: none; }
+  body[data-view="t3"] .card { margin-top: 16px; }
+  body[data-view="t3"] .thumb { display: block; flex: none; width: var(--th, 120px); height: calc(var(--th, 120px) * .75); border-radius: 10px; object-fit: cover; }
+  body[data-view="t3"] .head h1 { font-size: 20px; }
+  body[data-view="t3"] .head .spec { font-size: 15px; line-height: 1.4; }
   /* title wraps naturally to fill the space beside the image */
-  @media (max-width: 429px) { body[data-view="v3"] .card { --th: 100px; } }
-  @media (min-width: 430px) { body[data-view="v3"] .card { --th: 145px; } }
-  @media (min-width: 372px) and (max-width: 405px) { body[data-view="v3"] .card { --th: 110px; } }
-  @media (min-width: 406px) and (max-width: 429px) { body[data-view="v3"] .card { --th: 120px; } }
-  @media (max-width: 379px) { body[data-view="v3"] .head h1 { font-size: 19px; } body[data-view="v3"] .head .spec { font-size: 14px; } }
-  @media (max-width: 359px) { body[data-view="v3"] .head h1 { font-size: 16px; } body[data-view="v3"] .head .spec { font-size: 13px; } }
-  @media (max-width: 339px) { body[data-view="v3"] .head h1 { font-size: 16px; } }
-  body[data-view="v3"] .head { text-align: left; }
-  body[data-view="v3"] .stats { justify-content: flex-start; }
+  @media (max-width: 429px) { body[data-view="t3"] .card { --th: 100px; } }
+  @media (min-width: 430px) { body[data-view="t3"] .card { --th: 145px; } }
+  @media (min-width: 372px) and (max-width: 405px) { body[data-view="t3"] .card { --th: 110px; } }
+  @media (min-width: 406px) and (max-width: 429px) { body[data-view="t3"] .card { --th: 120px; } }
+  @media (max-width: 379px) { body[data-view="t3"] .head h1 { font-size: 19px; } body[data-view="t3"] .head .spec { font-size: 14px; } }
+  @media (max-width: 359px) { body[data-view="t3"] .head h1 { font-size: 16px; } body[data-view="t3"] .head .spec { font-size: 13px; } }
+  @media (max-width: 339px) { body[data-view="t3"] .head h1 { font-size: 16px; } }
+  body[data-view="t3"] .head { text-align: left; }
+  body[data-view="t3"] .stats { justify-content: flex-start; }
 
-  @media (min-width: 768px) { body[data-view="v3"] .card { margin: 16px 0 0; } }
+  @media (min-width: 768px) { body[data-view="t3"] .card { margin: 16px 0 0; } }
   /* V3: vehicle price sits under the name and trim, beside the thumbnail; stats go with the monthly price */
-  body[data-view="v3"] .card { display: grid; grid-template-columns: 1fr var(--th, 120px); grid-template-rows: auto auto 1fr; column-gap: 16px; align-content: start; }
-  body[data-view="v3"] .card > * { grid-column: 1 / -1; }
-  body[data-view="v3"] .head, body[data-view="v3"] .head-text, body[data-view="v3"] .pricerow { display: contents; }
-  body[data-view="v3"] .thumb { grid-column: 2; grid-row: 1 / span 3; align-self: start; }
-  body[data-view="v3"] .head h1 { grid-column: 1; grid-row: 1; align-self: end; }
-  body[data-view="v3"] .head .spec { grid-column: 1; grid-row: 2; }
-  body[data-view="v3"] .vpl { grid-column: 1 / -1; grid-row: 5; margin-top: 6px; padding-bottom: 0; border-bottom: 0; }
-  body[data-view="v3"] .head::after { content: ""; grid-column: 1 / -1; grid-row: 6; height: 1px; background: var(--line); margin-top: 12px; }
-  body[data-view="v3"] .pricerow .price { grid-column: 1 / -1; grid-row: 7; justify-self: start; margin-top: 12px; }
-  body[data-view="v3"] .stats { grid-column: 1 / -1; grid-row: 4; justify-content: flex-start; flex-wrap: nowrap; border-bottom: 0; padding-bottom: 0; margin-top: 14px; }
-  body[data-view="v3"] .cta, body[data-view="v3"] .pricerow + .cta { margin-top: 14px; }
-  body[data-view="v3"] .cta { grid-row: 9; }
-  body[data-view="v3"] .card > .usps { grid-row: 10; }
-  body[data-view="v3"] .est { grid-column: 1 / -1; grid-row: 8; margin-top: 2px; }
+  body[data-view="t3"] .card { display: grid; grid-template-columns: 1fr var(--th, 120px); grid-template-rows: auto auto 1fr; column-gap: 16px; align-content: start; }
+  body[data-view="t3"] .card > * { grid-column: 1 / -1; }
+  body[data-view="t3"] .head, body[data-view="t3"] .head-text, body[data-view="t3"] .pricerow { display: contents; }
+  body[data-view="t3"] .thumb { grid-column: 2; grid-row: 1 / span 3; align-self: start; }
+  body[data-view="t3"] .head h1 { grid-column: 1; grid-row: 1; align-self: end; }
+  body[data-view="t3"] .head .spec { grid-column: 1; grid-row: 2; }
+  body[data-view="t3"] .vpl { grid-column: 1 / -1; grid-row: 5; margin-top: 6px; padding-bottom: 0; border-bottom: 0; }
+  body[data-view="t3"] .head::after { content: ""; grid-column: 1 / -1; grid-row: 6; height: 1px; background: var(--line); margin-top: 12px; }
+  body[data-view="t3"] .pricerow .price { grid-column: 1 / -1; grid-row: 7; justify-self: start; margin-top: 12px; }
+  body[data-view="t3"] .stats { grid-column: 1 / -1; grid-row: 4; justify-content: flex-start; flex-wrap: nowrap; border-bottom: 0; padding-bottom: 0; margin-top: 14px; }
+  body[data-view="t3"] .cta, body[data-view="t3"] .pricerow + .cta { margin-top: 14px; }
+  body[data-view="t3"] .cta { grid-row: 9; }
+  body[data-view="t3"] .card > .usps { grid-row: 10; }
+  body[data-view="t3"] .est { grid-column: 1 / -1; grid-row: 8; margin-top: 2px; }
   /* V3, 406px+: stats fit in the gap under the name and trim */
   /* V3, under 406px: compact title and trim so they end level with the thumbnail */
-  @media (max-width: 405px) { body[data-view="v3"] .head h1 { line-height: 1.2; } body[data-view="v3"] .head .spec { line-height: 1.3; margin-top: 2px; } body[data-view="v3"] .stats { margin-top: 10px; } }
+  @media (max-width: 405px) { body[data-view="t3"] .head h1 { line-height: 1.2; } body[data-view="t3"] .head .spec { line-height: 1.3; margin-top: 2px; } body[data-view="t3"] .stats { margin-top: 10px; } }
   @media (min-width: 372px) {
-    body[data-view="v3"] .stats { grid-column: 1; grid-row: 3; align-self: start; flex-wrap: wrap; gap: 4px 12px; border-bottom: 0; padding: 0; margin-top: 6px; }
-    body[data-view="v3"] .thumb { grid-row: 1 / span 5; align-self: start; height: calc(var(--th, 120px) * .75); }
-    body[data-view="v3"] .vpl { grid-column: 1; margin-top: 2px; align-self: start; }
+    body[data-view="t3"] .stats { grid-column: 1; grid-row: 3; align-self: start; flex-wrap: wrap; gap: 4px 12px; border-bottom: 0; padding: 0; margin-top: 6px; }
+    body[data-view="t3"] .thumb { grid-row: 1 / span 5; align-self: start; height: calc(var(--th, 120px) * .75); }
+    body[data-view="t3"] .vpl { grid-column: 1; margin-top: 2px; align-self: start; }
   }
-  @media (min-width: 372px) and (max-width: 405px) { body[data-view="v3"] .head h1 { font-size: 18px; } body[data-view="v3"] .head .spec { font-size: 13px; } body[data-view="v3"] .stats { gap: 4px 8px; font-size: 12.5px; } body[data-view="v3"] .stats span { gap: 3px; } body[data-view="v3"] .stats svg { width: 14px; height: 14px; } }
+  @media (min-width: 372px) and (max-width: 405px) { body[data-view="t3"] .head h1 { font-size: 18px; } body[data-view="t3"] .head .spec { font-size: 13px; } body[data-view="t3"] .stats { gap: 4px 8px; font-size: 12.5px; } body[data-view="t3"] .stats span { gap: 3px; } body[data-view="t3"] .stats svg { width: 14px; height: 14px; } }
 
   .price-panel { margin-top: 12px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
   .price-label { font-size: 14px; font-weight: 400; color: rgba(0,0,0,.7); margin: 0 0 1px; }
@@ -158,6 +158,11 @@
   .legal { padding: 20px 4px 0; font-size: 14px; letter-spacing: -.2px; color: #222; }
   .legal p { margin: 0 0 14px; }
   .legal a { color: var(--ink); text-decoration: underline; }
+  /* Each view shows only its own finance example */
+  .legal [data-ex] { display: none; }
+  body:not([data-view="v1"]):not([data-view="v2"]) .legal [data-ex="std"],
+  body[data-view="v1"] .legal [data-ex="v1"],
+  body[data-view="v2"] .legal [data-ex="v2"] { display: block; }
 
   /* Mobile sticky bar */
   .sticky { position: fixed; inset: auto 0 0 0; z-index: 20; display: flex; align-items: center; gap: 12px; background: #fff; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); box-shadow: 0 -2px 12px rgba(0,0,0,.14); transform: translateY(110%); transition: transform .2s; }
@@ -184,6 +189,13 @@
   .seg button { font: 600 13px Inter, sans-serif; min-height: 36px; padding: 7px 16px; border-radius: 999px; border: 1px solid #cfc7e3; background: transparent; color: #5a566b; cursor: pointer; }
   .seg button[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: #fff; }
   .seg button:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+  .seg { flex-wrap: wrap; justify-content: center; }
+  @media (max-width: 479px) { .seg { gap: 4px; } .seg button { padding: 7px 10px; } }
+  .viewbar { flex-direction: column; gap: 8px; padding-top: 6px; }
+  .tabs { display: flex; gap: 20px; }
+  .tabs button { font: 600 13px Inter, sans-serif; padding: 6px 2px; border: 0; border-bottom: 2px solid transparent; background: none; color: #5a566b; cursor: pointer; }
+  .tabs button[aria-selected="true"] { color: var(--brand); border-bottom-color: var(--brand); }
+  .tabs button:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
 
   /* Original card, as it is on the live page */
   .card-old { padding: 18px 16px 16px; border-radius: 8px; margin-top: -24px; }
@@ -214,12 +226,19 @@
 </svg>
 
 <div class="viewbar" role="group" aria-label="Choose a design to view">
-  <span class="viewbar-label">View</span>
-  <div class="seg">
+  <div class="tabs">
+    <button type="button" data-tab="main" aria-selected="true">Designs</button>
+    <button type="button" data-tab="tpl" aria-selected="false">Unused templates</button>
+  </div>
+  <div class="seg" data-group="main">
+    <button type="button" data-view="v1" aria-pressed="true">V1</button>
+    <button type="button" data-view="v2" aria-pressed="false">V2</button>
+  </div>
+  <div class="seg" data-group="tpl" hidden>
     <button type="button" data-view="old" aria-pressed="false">Original</button>
-    <button type="button" data-view="v1" aria-pressed="false">V1</button>
-    <button type="button" data-view="v2" aria-pressed="true">V2</button>
-    <button type="button" data-view="v3" aria-pressed="false">V3</button>
+    <button type="button" data-view="t1" aria-pressed="false">Old V1</button>
+    <button type="button" data-view="t2" aria-pressed="false">Old V2</button>
+    <button type="button" data-view="t3" aria-pressed="false">Old V3</button>
   </div>
 </div>
 
@@ -235,7 +254,7 @@
   <div class="progress" aria-hidden="true"><i></i></div>
 
   <div class="hero"><img src="https://imagedelivery.net/eFUyqZujKjUb3WH6tRTCDA/vp-p-2a-lek-b25x8-49u9l4-1/public" alt="2019 Nissan Juke" width="800" height="450">
-    <div class="hero-price" id="heroPrice"><div class="hp-main">£299.00<small>/month</small></div><div class="hp-sub">PCP estimate · 11% deposit</div></div>
+    <div class="hero-price" id="heroPrice"><div class="hp-main"><span data-fig="mo">£299.00</span><small>/month</small></div><div class="hp-sub">PCP estimate · <span data-fig="dep">11%</span> deposit</div></div>
   </div>
 
   <!-- ORIGINAL: today's live card, rebuilt for comparison -->
@@ -265,8 +284,8 @@
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="18" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><path d="M6 7v10M18 7v4a2 2 0 0 1-2 2H6"/></svg>Manual</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16"/><path d="M3 21h12M14 10h2a2 2 0 0 1 2 2v3a1.5 1.5 0 0 0 3 0V8l-3-3"/><path d="M7 8h4"/></svg>Petrol</span>
     </div>
-    <p class="vpl">Vehicle price £18,000.00</p>
-    <div class="pricerow"><p class="price">£299.00<small>/month</small></p><p class="est">PCP estimate · 11% deposit</p></div>
+    <p class="vpl">Vehicle price <span data-fig="vp">£18,000.00</span></p>
+    <div class="pricerow"><p class="price"><span data-fig="mo">£299.00</span><small>/month</small></p><p class="est">PCP estimate · <span data-fig="dep">11%</span> deposit</p></div>
     <a class="cta" href="#continue" id="cta">Continue <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#arrow"/></svg></a>
 
     <ul class="usps">
@@ -278,34 +297,55 @@
   </article>
 
   <section class="legal">
-    <p class="legal-rep">Representative Example: based on a cash price of £18,000.00 with a deposit of £2,000.00, the amount of credit is £16,000.00, repayable over 49 months comprising 48 monthly payments of £299.00 followed by an optional final payment of £6,500.00, at a fixed interest rate of 7.9% per annum, giving a total amount payable of £24,850.00 and a representative APR of 9.9% APR. This example is based on an annual mileage of 10,000 miles; excess mileage charges may apply. Credit is subject to status.</p>
+    <p class="legal-rep" data-ex="std">Representative Example: based on a cash price of £18,000.00 with a deposit of £2,000.00, the amount of credit is £16,000.00, repayable over 49 months comprising 48 monthly payments of £299.00 followed by an optional final payment of £6,500.00, at a fixed interest rate of 7.9% per annum, giving a total amount payable of £24,850.00 and a representative APR of 9.9% APR. This example is based on an annual mileage of 10,000 miles; excess mileage charges may apply. Credit is subject to status.</p>
+    <p class="legal-rep" data-ex="v1">Rates from 9.4% APR. <strong>Representative Example (PCP)</strong>: Car price <strong>£30,000</strong>, Term 4 years, Deposit <strong>£3,000</strong>, Total amount of credit <strong>£27,000</strong>, Representative <strong>11.9% APR</strong> fixed rate, Monthly payment <strong>£514.35</strong>, Option to purchase fee £10 payable, Total cost of credit <strong>£8,992.41</strong>, Total amount payable <strong>£38,992.41</strong>, Optional final payment <strong>£11,817.96</strong> Annual mileage 8,000pa.<br>Car Finance 247 Limited is a credit broker, not a lender.</p>
+    <p class="legal-rep" data-ex="v2"><strong>Illustrative example (PCP) at 9.4% APR:</strong> Car price £30,000, Term 4 years, Deposit £3,000, Total amount of credit £27,000, 9.4% APR fixed rate, 47 monthly payments of £475.00, Option to purchase fee £10 (included in final payment), Optional final payment £11,817.96, Total cost of credit £7,142.96, Total amount payable £37,142.96, Annual mileage 8,000pa.<br>Car Finance 247 Limited is a credit broker, not a lender.</p>
     <p>By providing your information, you agree to our <a href="#privacy">Privacy Policy</a>.</p>
-    <p>Car Finance 247 Limited is a credit broker, not a lender.</p>
-    <p><strong>Car Finance 247</strong> will pay us a commission for introducing a customer who takes out a motor finance agreement. The commission paid is a <strong>fixed amount</strong> per agreement that is directly linked to the amount you borrow.</p>
+    <p data-ex="std">Car Finance 247 Limited is a credit broker, not a lender.</p>
   </section>
 </main>
 
 <div class="sticky" id="sticky" aria-hidden="true">
-  <div class="info"><div class="name">2019 Nissan Juke</div><div class="sub">£18,000</div></div>
+  <div class="info"><div class="name">2019 Nissan Juke</div><div class="sub" data-fig="sticky">£18,000</div></div>
   <a class="cta" href="#continue" tabindex="-1">Continue</a>
 </div>
 
 <script>
-  // Original / Redesign switch. ?view=old or ?view=new picks the starting view and is kept in the URL so it can be shared.
+  // Design switch. ?view=v1|v2 (Designs) or old|t1|t2|t3 (Unused templates) picks the starting view and is kept in the URL so it can be shared.
   (function () {
     var oldCard = document.getElementById('card-old'), newCard = document.getElementById('card');
     var buttons = document.querySelectorAll('.viewbar [data-view]');
+    var tabs = document.querySelectorAll('.viewbar [data-tab]'), groups = document.querySelectorAll('.viewbar .seg[data-group]');
+    // V1 and V2 use the purple-badge layout with the newer finance examples, so their card figures differ.
+    // The unused templates (Original, Old V1-V3) keep the £299 example.
+    var FIGS = {
+      std: { mo: '£299.00', dep: '11%', vp: '£18,000.00', sticky: '£18,000' },
+      v1:  { mo: '£514.35', dep: '10%', vp: '£30,000.00', sticky: '£30,000' },
+      v2:  { mo: '£475.00', dep: '10%', vp: '£30,000.00', sticky: '£30,000' }
+    };
+    function showGroup(g) {
+      groups.forEach(function (el) { el.hidden = el.dataset.group !== g; });
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', String(t.dataset.tab === g)); });
+    }
     function show(v) {
       document.body.dataset.view = v;
+      document.body.dataset.layout = (v === 'v1' || v === 'v2' || v === 't2') ? 'v2' : v;
+      showGroup(v === 'v1' || v === 'v2' ? 'main' : 'tpl');
       oldCard.hidden = v !== 'old';
       newCard.hidden = v === 'old';
-      document.getElementById('heroPrice').hidden = v !== 'v2';
+      document.getElementById('heroPrice').hidden = document.body.dataset.layout !== 'v2';
+      var f = FIGS[v] || FIGS.std;
+      document.querySelectorAll('[data-fig]').forEach(function (el) { el.textContent = f[el.dataset.fig]; });
       buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.view === v)); });
       try { var u = new URL(location.href); u.searchParams.set('view', v); history.replaceState(null, '', u); } catch (e) {}
     }
     buttons.forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.view); }); });
+    // Switching tab opens that tab's first design.
+    tabs.forEach(function (t) { t.addEventListener('click', function () {
+      if (t.getAttribute('aria-selected') !== 'true') show(document.querySelector('.seg[data-group="' + t.dataset.tab + '"] [data-view]').dataset.view);
+    }); });
     var start = new URLSearchParams(location.search).get('view');
-    show(['old', 'v1', 'v2', 'v3'].indexOf(start) > -1 ? start : 'v2');
+    show(['v1', 'v2', 'old', 't1', 't2', 't3'].indexOf(start) > -1 ? start : 'v1');
   })();
 
   // Show the mobile sticky bar once the main Continue button has scrolled out of view.
